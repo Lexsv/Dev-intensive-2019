@@ -1,0 +1,8 @@
+# Built application files
+build/
+libs/
+.idea/
+*.iml
+src/test/
+src/androidTest
+# Встроенные файлы приложений строить / ЛИЭС / .idea / * .iml SRC / тест / SRC / androidTest
