@@ -86,7 +86,7 @@ fun Date.humanizeDiff(date: Date = Date()): String {
     when (differenceValue) {
         in -59..0 -> humanizeSrt = "через несколько секунд"
 
-        in -119..-60 ->  humanizeSrt = "через минуту"2
+        in -119..-60 ->  humanizeSrt = "через минуту"
 
         in -299..-120,     // 2 - 4 MINUTE
         in -1_499..-1_320,  // 22 - 24 MINUTE
