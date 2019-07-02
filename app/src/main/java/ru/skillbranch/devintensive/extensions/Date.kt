@@ -71,9 +71,8 @@ fun Date.humanizeDiff(date: Date = Date()): String {
         in 172_800..431_999 -> humanizeSrt = "${differenceValue / 86_400} деня назад" // 2 - 4 DAY
         in 432_000..604_799 -> humanizeSrt = "${differenceValue / 86_400} деней назад" // 5 - 30 DAY
         in 604_800..1_209_599 -> humanizeSrt = "неделю назад" // 1 WEEK
-        in 1_209_600..2_591_999 -> if (differenceValue in 2_419_200..2_591_999)       // 2 - 4 WEEK
-                                         humanizeSrt = "3 недели назад"
-                                   else  humanizeSrt = "${differenceValue / 604_800} недели назад"
+        in 1_209_600..2_591_999 -> humanizeSrt = "${differenceValue / 604_800} недели назад"     // 2 - 4 WEEK
+
         in 2_592_000..5_183_999 -> humanizeSrt = "месяц назад" // 1 MONTH
         in 5_184_000..10_367_999 -> humanizeSrt = "${differenceValue / 2_592_000} месяца назад" // 2 - 4 MONTH
         in 10_368_000..31_535_999 -> if (differenceValue in 31_103_999..31_535_999)   // 5 - 12 MONTH
@@ -85,9 +84,9 @@ fun Date.humanizeDiff(date: Date = Date()): String {
 
     if (differenceValue <= 0) differenceValue--
     when (differenceValue) {
-        in -59..0 -> "через несколько секунд"
+        in -59..0 -> humanizeSrt = "через несколько секунд"
 
-        in -119..-60 ->  humanizeSrt = "через минуту"
+        in -119..-60 ->  humanizeSrt = "через минуту"2
 
         in -299..-120,     // 2 - 4 MINUTE
         in -1_499..-1_320,  // 22 - 24 MINUTE
@@ -111,9 +110,8 @@ fun Date.humanizeDiff(date: Date = Date()): String {
         in -431_999..-172_800 -> humanizeSrt = "через ${differenceValue / 86_400 * -1} деня" // 2 - 4 DAY
         in -604_799..-432_000 -> humanizeSrt = "через ${differenceValue / 86_400 * -1} деней" // 5 - 30 DAY
         in -1_209_599..-604_800 -> humanizeSrt = "через неделю" // 1 WEEK
-        in -2_591_999..-1_209_600 -> if (differenceValue in -2_591_999..-2_419_200)       // 2 - 4 WEEK
-                                        humanizeSrt = "через 3 недели"
-                                     else humanizeSrt = "через ${differenceValue / 604_800 * -1} недели"
+        in -2_591_999..-1_209_600 -> humanizeSrt = "через ${differenceValue / 604_800 * -1} недели"  // 2 - 4 WEEK
+
         in -5_184_000..-2_592_000 -> humanizeSrt = "через месяц" // 1 MONTH
         in -10_367_999..-5_183_999 -> humanizeSrt = "через ${differenceValue / 2_592_000 * -1} месяца" // 2 - 4 MONTH
         in -31_535_999..-10_368_000 -> if (differenceValue in -31_535_999..-31_103_999)   // 5 - 12 MONTH
