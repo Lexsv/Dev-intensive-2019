@@ -28,8 +28,6 @@ object Utils {
             "ш" to "sh", "щ" to "sh'", "ъ" to "", "ы" to "i", "ь" to "",
             "э" to "e", "ю" to "yu", "я" to "ya", " " to divider)
 
-
-
             for (r in translitExempl){
                 translitNeme = translitNeme?.replace(r.key, r.value)
             }
@@ -47,7 +45,7 @@ object Utils {
         return  translitNeme
     }
 
-    fun toInitials(firstName: String?, lastName: String?): String? {
+    fun toinitials(firstName: String?, lastName: String?): String? {
         val firstNameInitiale: Char? = firstName?.getOrNull(0)?.toUpperCase()
         val lastNameInitiale: Char? = lastName?.getOrNull(0)?.toUpperCase()
 
