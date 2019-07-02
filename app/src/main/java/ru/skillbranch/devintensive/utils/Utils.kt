@@ -10,7 +10,7 @@ object Utils {
                 firstName to lastName
             }
             else -> {
-                var cleanValue = fullName?.trim()
+                val cleanValue: String? = fullName?.trim()
                 val pars: List<String>? = cleanValue?.split(" ")
                 val clearPars: List<String>? =  pars?.filter { s -> s != "" }
                 val firstName = clearPars?.getOrNull(0)
@@ -21,7 +21,8 @@ object Utils {
     }
 
     fun transliteration(payloat: String, divider:String = " "): String? {
-        var translitNeme: String? = payloat.toLowerCase()
+        var cleanValue: String = payloat.trim()
+
         val translitExemplL: Map<String,String> = mapOf(
             "а" to "a", "б" to "b", "в" to "v", "г" to "g", "д" to "d",
             "е" to "e", "ё" to "e", "ж" to "zh", "з" to "z", "и" to "i",
@@ -31,22 +32,30 @@ object Utils {
             "ш" to "sh", "щ" to "sh'", "ъ" to "", "ы" to "i", "ь" to "",
             "э" to "e", "ю" to "yu", "я" to "ya")
 
+        val translitExemplU: Map<String,String> = mapOf(
+            "А" to "A", "Б" to "B", "В" to "V", "Г" to "G", "Д" to "D",
+            "Е" to "E", "Ё" to "E", "Ж" to "Zh", "З" to "Z", "И" to "I",
+            "Й" to "I", "К" to "K", "Л" to "L", "М" to "M", "Н" to "N",
+            "О" to "O", "П" to "P", "Р" to "R", "С" to "S", "Т" to "T",
+            "У" to "U", "Ф" to "F", "Х" to "H", "Ц" to "C", "Ч" to "Ch",
+            "Ш" to "Sh", "Щ" to "Sh'","Ы" to "I","Э" to "E", "Ю" to "Yu", "Я" to "Ya")
 
-            for (r in translitExemplL){
-                translitNeme = translitNeme?.replace(r.key, r.value)
+
+
+
+        for (r in translitExemplL){
+                cleanValue = cleanValue.replace(r.key, r.value)
             }
 
-        val pars: List<String>? = translitNeme?.split(divider)
-        translitNeme = pars?.getOrNull(0)?.
-                             replaceFirst(pars.get(0).toString().get(0),
-                                          pars.get(0).toString().get(0).toUpperCase()) +
-                             divider +
-                             pars?.getOrNull(1)?.
-                             replaceFirst(pars.get(1).toString().get(0),
-                                          pars.get(1).toString().get(0).toUpperCase())
+        for (r in translitExemplU){
+            cleanValue = cleanValue.replace(r.key, r.value)
+        }
+
+         var content: List<String>? = cleanValue.split(" ")
+         val clearPars: List<String>? =  content?.filter { s -> s != "" }
 
 
-        return  translitNeme
+        return  clearPars?.get(0) + if (clearPars?.size == 2) divider + clearPars?.get(1) else ""
     }
 
     fun toInitials(firstName: String? = null, lastName: String?=null): String? {
