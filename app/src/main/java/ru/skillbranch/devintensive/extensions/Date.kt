@@ -16,8 +16,8 @@ enum class TimeUnits {
     MINUTE,
     HOUR,
     DAY,
-    MONTH,
-    YEAR
+    MONTH
+
 }
 
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy", locale: String = "ru"): String {
@@ -33,7 +33,6 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
         TimeUnits.MONTH -> value * MONTH
-        TimeUnits.YEAR -> value * YEAR
     }
     this.time = time
     return this

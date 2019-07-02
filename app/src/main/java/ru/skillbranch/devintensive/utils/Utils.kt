@@ -45,13 +45,14 @@ object Utils {
         return  translitNeme
     }
 
-    fun toInitials(firstName: String?, lastName: String?): String? {
+    fun toInitials(firstName: String? = null, lastName: String?=null): String? {
         val firstNameInitiale: Char? = firstName?.getOrNull(0)?.toUpperCase()
         val lastNameInitiale: Char? = lastName?.getOrNull(0)?.toUpperCase()
 
        return when (firstNameInitiale to lastNameInitiale) {
            null to null, ' ' to null, null to ' '  -> null
            firstNameInitiale to null, firstNameInitiale to ' ' -> firstNameInitiale.toString()
+           null to lastName, ' ' to lastName -> lastNameInitiale.toString()
            lastNameInitiale to null, lastNameInitiale to ' ' -> lastNameInitiale.toString()
            else -> firstNameInitiale.toString() + lastNameInitiale.toString()
         }
