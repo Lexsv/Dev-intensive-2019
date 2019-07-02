@@ -18,9 +18,33 @@ object Utils {
     }
 
     fun transliteration(payloat: String, divider:String = " "): String? {
-        val translitNeme: String? = null
+        var translitNeme: String? = payloat.toLowerCase()
+        val translitExempl: Map<String,String> = mapOf(
+            "а" to "a", "б" to "b", "в" to "v", "г" to "g", "д" to "d",
+            "е" to "e", "ё" to "e", "ж" to "zh", "з" to "z", "и" to "i",
+            "й" to "i", "к" to "k", "л" to "l", "м" to "m", "н" to "n",
+            "о" to "o", "п" to "p", "р" to "r", "с" to "s", "т" to "t",
+            "у" to "u", "ф" to "f", "х" to "h", "ц" to "c", "ч" to "ch",
+            "ш" to "sh", "щ" to "sh'", "ъ" to "", "ы" to "i", "ь" to "",
+            "э" to "e", "ю" to "yu", "я" to "ya", " " to divider)
 
-        return translitNeme
+
+
+            for (r in translitExempl){
+                translitNeme = translitNeme?.replace(r.key, r.value)
+            }
+
+        val pars: List<String>? = translitNeme?.split(divider)
+        translitNeme = pars?.getOrNull(0)?.
+                             replaceFirst(pars.get(0).toString().get(0),
+                                          pars.get(0).toString().get(0).toUpperCase()) +
+                             divider +
+                             pars?.getOrNull(1)?.
+                             replaceFirst(pars.get(1).toString().get(0),
+                                          pars.get(1).toString().get(0).toUpperCase())
+
+
+        return  translitNeme
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
