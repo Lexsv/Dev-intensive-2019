@@ -2,6 +2,7 @@ package ru.skillbranch.devintensive.utils
 
 object Utils {
     fun parseFullName (fullName: String?) : Pair <String?,String?> {
+
         return when (fullName) {
             "", " " -> {
                 val firstName = null
@@ -9,26 +10,29 @@ object Utils {
                 firstName to lastName
             }
             else -> {
-                val pars: List<String>? = fullName?.split(" ")
-                val firstName = pars?.getOrNull(0)
-                val lastName = pars?.getOrNull(1)
-                firstName to lastName
+                var cleanValue = fullName?.trim()
+                val pars: List<String>? = cleanValue?.split(" ")
+                val clearPars: List<String>? =  pars?.filter { s -> s != "" }
+                val firstName = clearPars?.getOrNull(0)
+                val lastName = clearPars?.getOrNull(1)
+                firstName  to  lastName
             }
         }
     }
 
     fun transliteration(payloat: String, divider:String = " "): String? {
         var translitNeme: String? = payloat.toLowerCase()
-        val translitExempl: Map<String,String> = mapOf(
+        val translitExemplL: Map<String,String> = mapOf(
             "а" to "a", "б" to "b", "в" to "v", "г" to "g", "д" to "d",
             "е" to "e", "ё" to "e", "ж" to "zh", "з" to "z", "и" to "i",
             "й" to "i", "к" to "k", "л" to "l", "м" to "m", "н" to "n",
             "о" to "o", "п" to "p", "р" to "r", "с" to "s", "т" to "t",
             "у" to "u", "ф" to "f", "х" to "h", "ц" to "c", "ч" to "ch",
             "ш" to "sh", "щ" to "sh'", "ъ" to "", "ы" to "i", "ь" to "",
-            "э" to "e", "ю" to "yu", "я" to "ya", " " to divider)
+            "э" to "e", "ю" to "yu", "я" to "ya")
 
-            for (r in translitExempl){
+
+            for (r in translitExemplL){
                 translitNeme = translitNeme?.replace(r.key, r.value)
             }
 
