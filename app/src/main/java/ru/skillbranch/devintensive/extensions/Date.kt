@@ -60,14 +60,14 @@ fun Date.humanizeDiff(date: Date = Date()): String {
 
         in 60..3_599    /* 5 - 60 MINUTE */ -> humanizeSrt = "${differenceValue / 60} минут назад"
 
-        in 3_600..7_199 -> humanizeSrt = " час назад" //1 HOUR
+        in 3_600..7_199 -> humanizeSrt = "час назад" //1 HOUR
         in 7_200..17_999, //2 - 4
         in 79_200..86_399 /* 22 - 24 */-> humanizeSrt = " ${differenceValue / 3_600} часа назад"
 
-        in 18_000..75_599 -> humanizeSrt = " ${differenceValue / 3_600} часов назад"  //5 - 20 HOUR
-        in 75_600..79_199 -> humanizeSrt = " ${differenceValue / 3_600} час назад"  //21 HOUR
+        in 18_000..75_599 -> humanizeSrt = "${differenceValue / 3_600} часов назад"  //5 - 20 HOUR
+        in 75_600..79_199 -> humanizeSrt = "${differenceValue / 3_600} час назад"  //21 HOUR
 
-        in 86_400..172_799 -> humanizeSrt = " день назад" // 1 DAY
+        in 86_400..172_799 -> humanizeSrt = "день назад" // 1 DAY
         in 172_800..431_999 -> humanizeSrt = "${differenceValue / 86_400} деня назад" // 2 - 4 DAY
         in 432_000..604_799 -> humanizeSrt = "${differenceValue / 86_400} деней назад" // 5 - 30 DAY
         in 604_800..1_209_599 -> humanizeSrt = "неделю назад" // 1 WEEK
