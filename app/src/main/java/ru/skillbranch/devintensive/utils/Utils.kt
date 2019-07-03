@@ -21,8 +21,8 @@ object Utils {
     }
 
     fun transliteration(payloat: String, divider:String = " "): String? {
-        var cleanValue: String = payloat.trim()
 
+        var cleanValue: String = payloat.trim()
         val translitExemplL: Map<String,String> = mapOf(
             "а" to "a", "б" to "b", "в" to "v", "г" to "g", "д" to "d",
             "е" to "e", "ё" to "e", "ж" to "zh", "з" to "z", "и" to "i",
@@ -51,11 +51,15 @@ object Utils {
             cleanValue = cleanValue.replace(r.key, r.value)
         }
 
-         var content: List<String>? = cleanValue.split(" ")
+         val content: List<String>? = cleanValue.split(" ")
          val clearPars: List<String>? =  content?.filter { s -> s != "" }
+        return when {
+            clearPars?.size == 0 || clearPars?.size ==  null -> null
+            else -> clearPars.get(0) + if (clearPars.size == 2) divider + clearPars.get(1) else ""
+        }
 
 
-        return  clearPars?.get(0) + if (clearPars?.size == 2) divider + clearPars?.get(1) else ""
+
     }
 
     fun toInitials(firstName: String? = null, lastName: String?=null): String? {
