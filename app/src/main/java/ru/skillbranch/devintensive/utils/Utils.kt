@@ -62,15 +62,15 @@ object Utils {
     }
 
     fun toInitials(firstName: String? = null, lastName: String?=null): String? {
-        val firstNameInitiale: Char? = firstName?.getOrNull(0)?.toUpperCase()
-        val lastNameInitiale: Char? = lastName?.getOrNull(0)?.toUpperCase()
+        val firstNameCont: String?
+        val lastNameCont: String?
+        if (firstName?.trim() == "") firstNameCont = null  else firstNameCont = firstName
+        if (lastName?.trim() == "") lastNameCont = null  else lastNameCont = lastName
 
-       return when (firstNameInitiale to lastNameInitiale) {
-           null to null, ' ' to null, null to ' '  -> null
-           firstNameInitiale to null, firstNameInitiale to ' ' -> firstNameInitiale.toString()
-           null to lastName, ' ' to lastName -> lastNameInitiale.toString()
-           lastNameInitiale to null, lastNameInitiale to ' ' -> lastNameInitiale.toString()
-           else -> firstNameInitiale.toString() + lastNameInitiale.toString()
-        }
+        if (firstNameCont == null && lastNameCont == null)  return null
+        if(firstNameCont == null) return lastNameCont?.trim()?.take(1)?.toUpperCase()
+        if(lastNameCont == null) return firstNameCont.trim().take(1).toUpperCase()
+
+        return firstNameCont.trim().take(1).toUpperCase() + lastNameCont.trim().take(1).toUpperCase()
     }
 }
