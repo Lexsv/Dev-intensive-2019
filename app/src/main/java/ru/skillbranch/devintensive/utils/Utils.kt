@@ -20,9 +20,9 @@ object Utils {
         }
     }
 
-    fun transliteration(payloat: String, divider:String = " "): String? {
-
-        var cleanValue: String = payloat.trim()
+    fun transliteration(payloat: String?, divider:String = " "): String? {
+        if(payloat == null || payloat.trim() == "")    return null
+        var cleanValue: String? = payloat.trim()
         val translitExemplL: Map<String,String> = mapOf(
             "а" to "a", "б" to "b", "в" to "v", "г" to "g", "д" to "d",
             "е" to "e", "ё" to "e", "ж" to "zh", "з" to "z", "и" to "i",
@@ -44,17 +44,17 @@ object Utils {
 
 
         for (r in translitExemplL){
-                cleanValue = cleanValue.replace(r.key, r.value)
+                cleanValue = cleanValue?.replace(r.key, r.value)
             }
         for (r in translitExemplU){
-            cleanValue = cleanValue.replace(r.key, r.value)
+            cleanValue = cleanValue?.replace(r.key, r.value)
         }
 
-        val content: List<String>? = cleanValue.split(" ")
+        val content: List<String>? = cleanValue?.split(" ")
         val clearPars: List<String>? =  content?.filter { s -> s != "" }
         return when {
-            clearPars?.size == 0 || clearPars?.size ==  null -> null
-            else -> clearPars.get(0) + if (clearPars.size == 2) divider + clearPars.get(1) else ""
+            clearPars?.size == 0  -> null
+            else -> clearPars?.get(0) + if (clearPars?.size == 2) divider + clearPars.get(1) else ""
         }
 
 
