@@ -46,13 +46,12 @@ object Utils {
         for (r in translitExemplL){
                 cleanValue = cleanValue.replace(r.key, r.value)
             }
-
         for (r in translitExemplU){
             cleanValue = cleanValue.replace(r.key, r.value)
         }
 
-         val content: List<String>? = cleanValue.split(" ")
-         val clearPars: List<String>? =  content?.filter { s -> s != "" }
+        val content: List<String>? = cleanValue.split(" ")
+        val clearPars: List<String>? =  content?.filter { s -> s != "" }
         return when {
             clearPars?.size == 0 || clearPars?.size ==  null -> null
             else -> clearPars.get(0) + if (clearPars.size == 2) divider + clearPars.get(1) else ""
