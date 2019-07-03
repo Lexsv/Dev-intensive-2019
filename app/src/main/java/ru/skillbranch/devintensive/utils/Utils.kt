@@ -55,7 +55,7 @@ object Utils {
         val clearPars: List<String>? =  content?.filter { s -> s != "" }
         return when {
             clearPars?.size == 0  -> null
-            else -> clearPars?.get(0) + if (clearPars?.size == 2) if(divider == null) "" else divider + clearPars.get(1) else ""
+            else -> clearPars?.get(0) + if (clearPars?.size == 2) if(divider == null) "" + clearPars.get(1) else divider + clearPars.get(1) else ""
         }
 
 
