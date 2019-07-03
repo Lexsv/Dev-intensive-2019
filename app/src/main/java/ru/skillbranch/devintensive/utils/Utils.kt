@@ -20,7 +20,8 @@ object Utils {
         }
     }
 
-    fun transliteration(payloat: String?, divider:String = " "): String? {
+    fun transliteration(payloat: String?, divider:String? = " "): String? {
+
         if(payloat == null || payloat.trim() == "")    return null
         var cleanValue: String? = payloat.trim()
         val translitExemplL: Map<String,String> = mapOf(
@@ -54,7 +55,7 @@ object Utils {
         val clearPars: List<String>? =  content?.filter { s -> s != "" }
         return when {
             clearPars?.size == 0  -> null
-            else -> clearPars?.get(0) + if (clearPars?.size == 2) divider + clearPars.get(1) else ""
+            else -> clearPars?.get(0) + if (clearPars?.size == 2) if(divider == null) "" else divider + clearPars.get(1) else ""
         }
 
 
