@@ -12,11 +12,71 @@ const val MONTH = DAY * 30
 const val YEAR = MONTH * 12
 
 enum class TimeUnits {
-    SECOND,
-    MINUTE,
-    HOUR,
-    DAY,
-    MONTH
+    SECOND {
+        override fun plural(i: Int): String? {
+            var content: Int = i
+            if (content < 0) content *= -1
+
+            return when {
+                content % 10 == 1 -> if (content == 11)"${content} секунд" else "${content} секунду"
+                content % 10 == 2 || content % 10 == 3 ||content % 10 == 4 ->
+                    if ( content == 12 || content == 13 || content == 14)"${content} секунд" else "${content} секунды"
+                else -> "${content} секунд"
+            }
+        }
+    },
+    MINUTE {
+        override fun plural(i: Int): String? {
+            var content: Int = i
+            if (content < 0) content *= -1
+
+            return when {
+                content % 10 == 1 -> if (content == 11)"${content} минут" else "${content} минуту"
+                content % 10 == 2 || content % 10 == 3 ||content % 10 == 4 ->
+                    if ( content == 12 || content == 13 || content == 14)"${content} минут" else "${content} минуты"
+                else -> "${content} минут"
+            }
+        }
+    },
+    HOUR {
+        override fun plural(i: Int): String? {
+            var content: Int = i
+            if (content < 0) content *= -1
+            return when {
+                content % 10 == 1 -> if (content == 11)"${content} часов" else "${content} час"
+                content % 10 == 2 || content % 10 == 3 || content % 10 == 4 ->
+                    if ( content == 12 || content == 13 || content == 14)"${content} часов" else "${content} часа"
+                else -> "${content} часов"
+            }
+        }
+    },
+    DAY {
+        override fun plural(i: Int): String? {
+            var content: Int = i
+            if (content < 0) content *= -1
+
+
+            return when {
+                content % 10 == 1 || content % 100 == 1  -> if (content  == 11 || content  == 111
+                    || content  == 211 ||content  == 311 ) "${content} дней"
+                else "${content} день"
+                content % 10 == 2 || content % 10 == 3 || content % 10 == 4
+                        || content % 100 == 2 || content % 100 == 3 || content % 100 == 4 ->
+                    if (content == 12 || content == 13 ||  content == 14 ||
+                        content == 112 || content == 113 ||  content == 114 ||
+                        content == 212 || content == 213 ||  content == 214 ||
+                        content == 312 || content == 313 ||  content == 314 ) "${content} дней" else "${content} дня"
+                else -> "${content} дней"
+            }
+        }
+    },
+    MONTH {
+        override fun plural(i: Int): String? {
+            return ""
+        }
+    };
+
+    abstract fun plural(i: Int): String?
 
 }
 
