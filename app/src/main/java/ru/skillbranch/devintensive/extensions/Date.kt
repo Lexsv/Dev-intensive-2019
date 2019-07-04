@@ -58,21 +58,21 @@ fun Date.humanizeDiff(date: Date = Date()): String {
 
 
        when (differenceValue) {
-            in -1..0 -> resalt =  "прямо сейчас"
+            in -1..0 -> resalt =  "только что"
             in -45..-1 -> resalt =  "через несколько секунд"
             in -75..-45 -> resalt =  "через минуту"
-            in -45 * MINUTE..-75 -> resalt =  "через ${getStringMin(differenceValue)}"
-            in -75 * MINUTE..-45 * MINUTE  -> resalt =  "через час"
-            in -22 * HOUR..-75 * MINUTE  -> resalt =  "через ${getStringHou(differenceValue)}"
-            in -26 * HOUR..-22 * HOUR  -> resalt =  "через день"
-            in  -360 * DAY..-26* HOUR -> resalt =  "через ${getStringDay(differenceValue)}"
+            in -45 * 60..-75 -> resalt =  "через ${getStringMin(differenceValue)}"
+            in -75 * 60..-45 * 60  -> resalt =  "через час"
+            in -22 * 3_600..-75 * 60 -> resalt =  "через ${getStringHou(differenceValue)}"
+            in -26 * 3_600..-22 * 3_600  -> resalt =  "через день"
+            in -360 * 86_400..-26* 3_600 -> resalt =  "через ${getStringDay(differenceValue)}"
 
        }
-       if (differenceValue < -360 * DAY) resalt = "более чем через год"
+       if (differenceValue < -360 * 86_400) resalt = "более чем через год"
 
 
 
-       return "какое-то время назад"
+       return resalt
 
 }
 
@@ -102,6 +102,7 @@ fun getStringHou (value: Long): String {
 fun getStringDay (value: Long): String {
     var content: Long = value / 86_400
     if (content < 0) content *= -1
+
 
     return when {
         content % 10 == 1L || content % 100 == 1L  -> if (content  == 11L || content  == 111L

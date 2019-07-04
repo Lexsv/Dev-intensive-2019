@@ -39,7 +39,7 @@ object Utils {
             "Й" to "I", "К" to "K", "Л" to "L", "М" to "M", "Н" to "N",
             "О" to "O", "П" to "P", "Р" to "R", "С" to "S", "Т" to "T",
             "У" to "U", "Ф" to "F", "Х" to "H", "Ц" to "C", "Ч" to "Ch",
-            "Ш" to "Sh", "Щ" to "Sh'","Ы" to "I","Э" to "E", "Ю" to "Yu", "Я" to "Ya")
+            "Ш" to "Sh", "Щ" to "Sh'","Ъ" to "","Ы" to "I","Ь" to "","Э" to "E", "Ю" to "Yu", "Я" to "Ya")
 
 
 
