@@ -11,10 +11,12 @@ fun String.stripHtml(): String {
 
 fun String.truncate (value: Int = 16): String {
     val valueThis = if (this.length < value) this.length else value
+    if (this.length == value)return  this.trim()
     var stringThis = this.take(valueThis)
     val lastThis : String = this.takeLast(this.length - valueThis).trim()
-    if (stringThis.last() == ' ') if (this.length > valueThis && lastThis.length >= 1)stringThis = stringThis.trim().plus("...")
-    else stringThis = stringThis.trim()
+    if (stringThis.last() == ' ')
+        if (this.length > valueThis && lastThis.length >= 1)stringThis = stringThis.trim().plus("...")
+        else stringThis = stringThis.trim()
     else stringThis = stringThis.plus("...")
     return stringThis
 }
