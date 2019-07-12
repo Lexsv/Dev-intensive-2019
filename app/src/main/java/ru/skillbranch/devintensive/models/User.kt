@@ -1,8 +1,8 @@
 package ru.skillbranch.devintensive.models
 
-import android.provider.Contacts
+
 import ru.skillbranch.devintensive.utils.Utils
-import java.time.LocalDate
+
 import java.util.*
 
 data class User(
