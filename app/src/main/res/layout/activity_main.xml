@@ -46,9 +46,10 @@
                 android:paddingBottom="@dimen/spacing_normal_16"
                 android:layout_marginLeft="@dimen/spacing_normal_16"
                 android:layout_marginRight="@dimen/spacing_normal_16"
-                android:lines="1"/>
+                android:singleLine="true"/>
 
         <ImageView
+                android:id="@+id/iv_send"
                 android:layout_width="@dimen/buttn_large_24"
                 android:layout_height="@dimen/buttn_large_24"
                 android:src="@drawable/ic_send_black_24dp"
