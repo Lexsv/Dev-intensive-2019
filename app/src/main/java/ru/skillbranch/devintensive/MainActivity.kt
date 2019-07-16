@@ -25,9 +25,6 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener {
     lateinit var sendBtn: ImageView
     lateinit var  benderObjects: Bender
 
-    constructor(parcel: Parcel) : this() {
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +37,14 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener {
 
         val status = savedInstanceState?.getString("STATUS") ?: Bender.Status.NORMAL.name
         val question = savedInstanceState?.getString("QUESION") ?: Bender.Question.NAME.name
-        benderObjects = Bender(Bender.Status.valueOf(status),Bender.Question.valueOf(question))
 
+        benderObjects = Bender(Bender.Status.valueOf(status),Bender.Question.valueOf(question))
         val (r,g,b) = benderObjects.status.color
         benderImage.setColorFilter(Color.rgb(r,g,b), PorterDuff.Mode.MULTIPLY)
 
-        textView.text = benderObjects.askQuestion()
+
+        textView.setText(savedInstanceState?.getString("MESSAG") ?: Bender.Question.NAME.question)
+
         sendBtn.setOnClickListener(this)
 
     }
@@ -66,6 +65,7 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener {
         super.onSaveInstanceState(outState)
         outState?.putString("STATUS", benderObjects.status.name)
         outState?.putString("QUESION", benderObjects.question.name)
+        outState?.putString("MESSAG",textView.getText().toString())
 
     }
 }
