@@ -29,7 +29,6 @@ class MainActivity() : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.d("M_MainActiviti","onCreate")
         benderImage = iv_bender
         textView = tv_text
         messageEt = et_message
